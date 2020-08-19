@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MissleLauncher.Missles
 {
-    class Torpedo
+    public class Torpedo:Missle
     {
     }
 }

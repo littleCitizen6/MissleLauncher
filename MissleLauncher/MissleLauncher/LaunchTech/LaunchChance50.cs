@@ -4,7 +4,8 @@ using System.Text;
 
 namespace MissleLauncher.LaunchTech
 {
-    class LaunchChance50
+    public class LaunchChance50 : ILaunchTechnique
     {
+        public double CalculatePercentage() => 50;
     }
 }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MissleLauncher.Missles
+namespace MissleLauncher
 {
-    public class Ballistic:Missle
+    class MissleLauncherStock
     {
     }
 }
