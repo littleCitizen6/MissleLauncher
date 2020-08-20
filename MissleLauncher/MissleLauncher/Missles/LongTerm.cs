@@ -4,9 +4,9 @@ using System.Text;
 
 namespace MissleLauncher.Missles
 {
-    class LongTermMissle : Missle
+    class LongTerm : Missle
     {
-        public LongTermMissle(string name) : base(name)
+        public LongTerm(string name) : base(name)
         {
         }
     }

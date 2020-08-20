@@ -39,7 +39,7 @@ namespace MissleLauncher
             return "added succesfully";
         }
 
-        public string Launch(string name, int launchCount) 
+        public string Launch(string name, int launchCount, MenuHendler hendler) 
         {
             StringBuilder builder = new StringBuilder();
             bool noMore = false;
@@ -53,8 +53,8 @@ namespace MissleLauncher
                 }
                 else
                 {
-                    bool launched = missle.Launch(_techFactory.Generate(missle.Name));
-                    builder.AppendLine($"for {name} number {i + 1} launch result is {missle.Launch(_techFactory.Generate(name))}");
+                    bool launched = missle.Launch(_techFactory.Generate(missle.Name, hendler));
+                    builder.AppendLine($"for {name} number {i + 1} launch result is {launched}");
                     if (launched)
                     {
                         _stock.Missles.Remove(missle);
@@ -77,14 +77,14 @@ namespace MissleLauncher
             _stock.Missles.RemoveAt(int.Parse(index));
             return "removed succesfully";
         }
-        internal string TotalWar()
+        internal string TotalWar(MenuHendler hendler)
         {
             StringBuilder builder = new StringBuilder();
             foreach (var missle in _stock.Missles)
             {
                 if(!missle.FailedLaunch)
                 {
-                    bool launched = missle.Launch(_techFactory.Generate(missle.Name));
+                    bool launched = missle.Launch(_techFactory.Generate(missle.Name, hendler));
                     builder.AppendLine($"for {missle.Name} launch result is {launched}");
                     if (launched)
                     {

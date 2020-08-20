@@ -77,7 +77,7 @@ namespace MissleLauncher
                     Presenter.Display(message);
                     num = Provider.Get<int>();
                 }
-                catch (FormatException e)
+                catch (FormatException)
                 {
                     Presenter.Display("invalid input please insert a number");
                     converted = false;

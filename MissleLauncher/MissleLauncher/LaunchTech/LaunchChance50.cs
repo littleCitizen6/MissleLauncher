@@ -7,5 +7,6 @@ namespace MissleLauncher.LaunchTech
     public class LaunchChance50 : ILaunchTechnique
     {
         public double CalculatePercentage() => 50;
+
     }
 }

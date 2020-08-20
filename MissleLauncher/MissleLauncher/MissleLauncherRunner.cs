@@ -53,10 +53,10 @@ namespace MissleLauncher
         {
             if (userKey == "TotalWar")
             {
-                return _controller.TotalWar();
+                return _controller.TotalWar(_menuHendler);
             }
             int count =_menuHendler.GetInt("how many?");
-            return _controller.Launch(userKey, count);
+            return _controller.Launch(userKey, count, _menuHendler);
         }
 
         public string Remove(string userKey)
