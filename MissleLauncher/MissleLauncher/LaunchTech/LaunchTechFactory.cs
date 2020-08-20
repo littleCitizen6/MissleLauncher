@@ -7,19 +7,18 @@ namespace MissleLauncher.LaunchTech
 {
     public class LaunchTechFactory
     {
-        public ILaunchTechnique Generate(string launchTechnique)
+        public ILaunchTechnique Generate(string missle)
         {
-            var type = AppDomain.CurrentDomain.GetAssemblies()
-                .SelectMany(a => a.GetTypes())
-                .Where(type => type.IsAssignableFrom(typeof(ILaunchTechnique)))
-                .FirstOrDefault(type => type.Name == launchTechnique);
-            if (type == null)
+            switch (missle)
             {
-                throw new ArgumentException("type of LaunchTechnique doesnt recognize");
+                case "Torpedo":
+                    return new LaunchChance100();
+                case "Ballistic":
+                    return new LaunchChance50();
+                case "Cruise":
+                    return new LaunchChance20();
             }
-
-            return (ILaunchTechnique)Activator.CreateInstance(type);
-
+            throw new NotImplementedException("the launcher doesnt have a technique for this missle");
         }
     }
 }

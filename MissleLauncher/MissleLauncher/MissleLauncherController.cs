@@ -13,7 +13,7 @@ namespace MissleLauncher
             _stock = stock;
         }
 
-        private string AddMissle() { }
+       // private string AddMissle() { }
 
     }
 }

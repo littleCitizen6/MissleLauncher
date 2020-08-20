@@ -8,11 +8,6 @@ namespace MissleLauncher.Missles
 {
     public class MissleFactory
     {
-        public MissleFactory()
-        {
-
-        }
-
         public Missle Generate(string missleType) 
         {
             var type = AppDomain.CurrentDomain.GetAssemblies()

@@ -16,5 +16,7 @@ namespace MissleLauncher.Missles
             int randNum = rander.Next(1, 101);
             return technique.CalculatePercentage() >= randNum;
         }
+
+        
     }
 }
