@@ -12,12 +12,15 @@ namespace MissleLauncher.Missles
         public Missle(string name)
         {
             Name = name;
+            FailedLaunch = false;
         }
         public bool Launch(ILaunchTechnique technique)
         {
             Random rander = new Random();
             int randNum = rander.Next(1, 101);
-            return technique.CalculatePercentage() >= randNum;
+            bool succeded = technique.CalculatePercentage() >= randNum;
+            FailedLaunch = !succeded;
+            return succeded;
         }
 
         

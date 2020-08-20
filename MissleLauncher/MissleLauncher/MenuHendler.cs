@@ -36,14 +36,14 @@ namespace MissleLauncher
             }
             return menu;
         }
-        public IMenu CreateStringsFunctionMenu(IEnumerable<string> keys,Func<string,string> func)
+        public IMenu CreateStringsFunctionMenu(IEnumerable<string> keys, Func<string, string> func)
         {
             var menu = new StringMenu();
             foreach (var key in keys)
             {
                 menu.AddAction(key, func, key);
             }
-            menu.AddAction("back", GetPrevious,"back to previous menu");
+            menu.AddAction("back", GetPrevious, "back to previous menu");
             return menu;
         }
 
@@ -64,5 +64,27 @@ namespace MissleLauncher
             Runner.Exit();
             return "goodbye";
         }
+
+        public int GetInt(string message)
+        {
+            int num=0;
+            bool converted ;
+            do
+            {
+                try
+                {
+                    converted = true;
+                    Presenter.Display(message);
+                    num = Provider.Get<int>();
+                }
+                catch (FormatException e)
+                {
+                    Presenter.Display("invalid input please insert a number");
+                    converted = false;
+                }
+            } while (!converted);
+            return num;
+        }
+    
     }
 }
