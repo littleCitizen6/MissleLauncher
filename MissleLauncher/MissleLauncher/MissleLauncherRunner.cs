@@ -38,6 +38,7 @@ namespace MissleLauncher
             mainActions.Add(new Option<int>(1, _menuHendler.MoveToOtherMenu, "choose missle to add"));
             mainActions.Add(new Option<int>(2, _menuHendler.MoveToOtherMenu, "choose missle to launch"));
             mainActions.Add(new Option<int>(3, _controller.StockReport, "get stock report"));
+            mainActions.Add(new Option<int>(4, Remove ,"remove missle"));
             mainActions.Add(new Option<int>(5, _menuHendler.Exit, "exit from shayetet6"));
             return mainActions;
         }
@@ -56,6 +57,11 @@ namespace MissleLauncher
             }
             int count =_menuHendler.GetInt("how many?");
             return _controller.Launch(userKey, count);
+        }
+
+        public string Remove(string userKey)
+        {
+            return _controller.RemoveMissleAt(_menuHendler.GetInt("insert key to remove").ToString());
         }
 
 

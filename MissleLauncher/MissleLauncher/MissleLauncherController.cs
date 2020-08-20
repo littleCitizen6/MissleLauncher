@@ -72,7 +72,11 @@ namespace MissleLauncher
             _stock.Missles.ForEach(missle => builder.AppendLine($"{missle.Name} missle"));
             return builder.ToString();
         }
-
+        public string RemoveMissleAt(string index)
+        {
+            _stock.Missles.RemoveAt(int.Parse(index));
+            return "removed succesfully";
+        }
         internal string TotalWar()
         {
             StringBuilder builder = new StringBuilder();
