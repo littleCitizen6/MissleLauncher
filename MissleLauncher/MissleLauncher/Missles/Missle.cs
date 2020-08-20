@@ -9,7 +9,10 @@ namespace MissleLauncher.Missles
     {
         public string Name { get; private set; }
         public bool FailedLaunch { get; set; }
-        
+        public Missle(string name)
+        {
+            Name = name;
+        }
         public bool Launch(ILaunchTechnique technique)
         {
             Random rander = new Random();

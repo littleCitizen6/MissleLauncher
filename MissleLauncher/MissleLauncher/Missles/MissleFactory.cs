@@ -8,18 +8,24 @@ namespace MissleLauncher.Missles
 {
     public class MissleFactory
     {
+        public IEnumerable<string> GetMissles()
+        {
+            return AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(a => a.GetTypes())
+                .Where(type => typeof(Missle).IsAssignableFrom(type) && type != typeof(Missle)).Select(type => type.Name);
+        }
         public Missle Generate(string missleType) 
         {
             var type = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(a => a.GetTypes())
-                .Where(type => type.IsAssignableFrom(typeof(Missle)))
+                .Where(type => typeof(Missle).IsAssignableFrom(type) && type != typeof(Missle))
                 .FirstOrDefault(type => type.Name==missleType);
             if(type == null)
             {
                 throw new ArgumentException("type of missle doesnt recognize");
             }
 
-            return (Missle)Activator.CreateInstance(type);
+            return (Missle)Activator.CreateInstance(type, new string[] {missleType });
            
         }
 

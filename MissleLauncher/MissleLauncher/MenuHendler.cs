@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using MenuBuilder;
 using MenuBuilder.Abstraction;
+using MenuBuilder.Browsers;
 using MenuBuilder.Menus;
 using MenuBuilder.Presenters;
 using MenuBuilder.Providers;
@@ -17,25 +18,45 @@ namespace MissleLauncher
         public IPresenter Presenter { get; set; }
         public IParamVaidator Validator { get; set; }
         public IBrowser Browser { get; set; }
-        public MenuHendler(IMenu headMenu)
+        public MenuHendler()
         {
-            
-            //Browser = new StackBrowser(headMenu);
+            Browser = new StackBrowser();
             Provider = new ConsoleProvider();
             Presenter = new ConsolePresenter();
             Validator = new StringParamValidator();
-           // Runner = new MenuRunner<string>(presenter, provider, validator, browser);
-            //Runner.AddMenu("m1", headMenu);
-           // Runner.AddMenu("m2", menu2);
+            Runner = new MenuRunner<string>(Presenter, Provider, Validator, Browser);
         }
 
-       /* public IMenu CreateNumberMenu(Dictionary<int,Func<string>> actions)
+        public static IMenu CreateNumberMenu(List<Option<int>> options)
         {
             var menu = new NumbersMenu();
-            foreach (int key in actions.Keys)
+            foreach (var option in options)
             {
-                menu.AddAction(key.ToString(), actions[key],"")
+                menu.AddAction(option.Key.ToString(), option.Func, option.Description);
             }
-        }*/
+            return menu;
+        }
+        public IMenu CreateStringsFunctionMenu(IEnumerable<string> keys,Func<string,string> func)
+        {
+            var menu = new StringMenu();
+            foreach (var key in keys)
+            {
+                menu.AddAction(key, func, key);
+            }
+            menu.AddAction("back", GetPrevious,"back to previous menu");
+            return menu;
+        }
+
+        public string MoveToOtherMenu(string index)
+        {
+            Runner.Browser.Current = Runner.Menus[index];
+            return "succeded";
+        }
+
+        public string GetPrevious(string userParam)
+        {
+            Browser.PreviousOrDefult();
+            return "moving back";
+        }
     }
 }
