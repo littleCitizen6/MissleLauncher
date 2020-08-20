@@ -58,5 +58,11 @@ namespace MissleLauncher
             Browser.PreviousOrDefult();
             return "moving back";
         }
+
+        public string Exit(string userParam)
+        {
+            Runner.Exit();
+            return "goodbye";
+        }
     }
 }

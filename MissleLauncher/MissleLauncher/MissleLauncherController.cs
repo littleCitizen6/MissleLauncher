@@ -34,11 +34,7 @@ namespace MissleLauncher
             return "added succesfully";
         }
 
-        /*public string Launch(string name, int num = 0)
-        {
-            int Counter = 0;
-
-        }*/
+        //public string Launch(string name, int num = 0) {}
 
         public string StockReport(string userParam)
         {
